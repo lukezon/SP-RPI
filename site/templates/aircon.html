@@ -1,0 +1,30 @@
+$def with (power,mode,fan,temp,abstemp, error)
+
+<html>
+    <head>
+        <title>AirCon Page</title>
+    </head>
+<body>
+
+Successfully Triggered AC Control with Variables:
+
+<ul>
+$if power:
+	<li>Power with Varaible: $power	</li>
+$if mode:
+	<li>Mode with Varaible: $mode	</li>
+$if fan:
+	<li>Fan with Varaible: $fan	</li>
+$if temp:
+	<li>Temperature with Varaible: $temp	</li>
+$if abstemp:
+	<li>Absolute Temperature with Varaible: $abstemp</li>
+$if error:
+	Error: No variables given!	
+
+	<em>Avalable Variables: power, mode, fan, temp, abstemp.</em>
+</ul>
+
+
+</body>
+</html>
