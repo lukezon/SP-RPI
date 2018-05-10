@@ -1,7 +1,8 @@
 import time
 import sys
 import server_parser
-import infrared as ir
+import imp
+
 
 #Address of Handling Sever
 server_address = "10.0.1.90:8080"
@@ -30,7 +31,7 @@ while run == True:
 			values = command[2:]
 			print ("values: " + values)
 			try:
-				service.run(values)
+				print(imp.load_source("{}.py".format(service),"modules/{}.py".format(service)).run(values))
 			except:
-				print("Error in running command")
+				print "Error in running command:", sys.exc_info()
 	time.sleep(2)
