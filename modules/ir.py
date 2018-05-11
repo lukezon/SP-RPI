@@ -98,12 +98,13 @@ def run(input_value):
 		if device == "aircon":
 			aircon(command_name, command_value)
 		else:
-			#handle other devices
-			pass
+			irsend(command_name, command_value)
+
+
 
 
 
 
 if __name__ == "__main__":
 	Debug = True
-	print run("aircon$power|1!abstemp|68!mode|1!fan|1")
+	#print run("aircon$power|1!abstemp|68!mode|1!fan|1")
