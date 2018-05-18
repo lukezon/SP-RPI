@@ -91,15 +91,17 @@ def run(input_value):
 		commands = [input_value[1]]
 	print("ir commands: " + str(commands))
 	for command_raw in commands:
-		command_raw = command_raw.split('|')
-		command_name = command_raw[0]
-		command_value = command_raw[1]
-		print("trying command :" + str(command_name) + " with: " + str(command_value))
-		if device == "aircon":
-			try:
+		try:
+			command_raw = command_raw.split('|')
+			command_name = command_raw[0]
+			command_value = command_raw[1]
+			print("trying command :" + str(command_name) + " with: " + str(command_value))
+			if device == "aircon":
 				aircon(command_name, command_value)
-		else:
-			irsend(command_name, command_value)
+			else:
+				irsend(command_name, command_value)
+		except:
+			print("Error Running Command")
 
 
 
@@ -108,4 +110,4 @@ def run(input_value):
 
 if __name__ == "__main__":
 	Debug = True
-	#print run("aircon$power|1!abstemp|68!mode|1!fan|1")
+	print run("aircon$!power|1")
