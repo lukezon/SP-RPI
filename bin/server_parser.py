@@ -13,7 +13,8 @@ def checkupdate(iot_id, address, delete):
 		else:
 			return source
 	except:
-		return "error Cannot Reach Server"
+		print "error Cannot Reach Server"
+		return None
 
 
 def parse_server(table_info):

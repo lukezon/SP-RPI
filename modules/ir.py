@@ -96,7 +96,8 @@ def run(input_value):
 		command_value = command_raw[1]
 		print("trying command :" + str(command_name) + " with: " + str(command_value))
 		if device == "aircon":
-			aircon(command_name, command_value)
+			try:
+				aircon(command_name, command_value)
 		else:
 			irsend(command_name, command_value)
 

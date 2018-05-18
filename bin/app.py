@@ -5,13 +5,15 @@ import imp
 
 
 #Address of Handling Sever
-server_address = "10.0.1.90:8080"
+server_address = "home.lukeschimmel.com:2301"
 #iot_id of the device
 iot_id = "4"
 #delete requests from Handling Server once read?
 delete = True
 #sets the pinging service to run
 run = True
+#Sets delay (in seconds) between pings
+ping_timer = 5
 
 
 run_count = 0
@@ -34,4 +36,4 @@ while run == True:
 				print(imp.load_source("{}.py".format(service),"modules/{}.py".format(service)).run(values))
 			except:
 				print "Error in running command:", sys.exc_info()
-	time.sleep(2)
+	time.sleep(ping_timer)
