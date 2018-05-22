@@ -37,6 +37,12 @@ def aircon(command_name, command_value):
 		power = "POWER COMMAND PASSED NO ISSUE"
 		if command_value == "toggle":
 			irsend("aircon","KEY_POWER")
+		elif command_value == "2":
+			if getpowerstatus() == 0:
+				irsend("aircon","KEY_POWER")
+			if getpowerstatus() == 1:
+				irsend("aircon","KEY_POWER")
+				irsend("aircon","KEY_POWER")
 		elif command_value == "1":
 			if getpowerstatus() == 0:
 				irsend("aircon","KEY_POWER")
@@ -110,4 +116,4 @@ def run(input_value):
 
 if __name__ == "__main__":
 	Debug = True
-	print run("aircon$!power|1")
+	print run("aircon$power|2")

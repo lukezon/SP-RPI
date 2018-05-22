@@ -9,7 +9,12 @@ GPIO.setmode(GPIO.BCM)
 def GPIO_Control(pin, command, delay):
 	pin = int(pin)
 	GPIO.setup(pin,GPIO.OUT)
-	if delay:
+	if delay and "r" in delay:
+		delay = delay[1:]
+		GPIO.output(pin, False)
+		time.sleep(float(delay))
+		GPIO.output(pin, True)
+	elif delay:
 		GPIO.output(pin, True)
 		time.sleep(float(delay))
 		GPIO.output(pin, False)
@@ -31,7 +36,7 @@ def run(commands):
 		command = command_raw[1]
 		if GPIO_pin	== "7":
 			return "error: this Pin is already in use by the Sonic Sensor"
-		if not (command == "1" or command == "0" or command[0:6] == "toggle" or command[0:6] == "Toggle"):
+		if not (command == "1" or command == "0" or command[0:6] == "toggle" or command[0:6] == "Toggle" or command[0:6] == "invtog" or command[0:6] == "Invtog"):
 			return "error: you can only command 1, 0, or toggle"
 		else:
 			delay = None
@@ -40,6 +45,11 @@ def run(commands):
 				if command[6:]:
 					delay = command[6:]
 					command = "toggle"
+			elif command[0:6] == "invtog" or command[0:6] == "Invtog":
+				delay = "r1"
+				if command[6:]:
+					delay = "r" + command[6:]
+					command = "invtog"
 			print delay
 			print command
 			print GPIO_pin
@@ -48,7 +58,7 @@ def run(commands):
 
 
 if __name__ == '__main__':
-	print run("19|toggle1!26|toggle0.1")
+	print run("19|1")
 
 
 
